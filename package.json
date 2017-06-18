@@ -1,0 +1,28 @@
+{
+  "name": "bookshelf-nodejs",
+  "version": "1.0.0",
+  "description": "Bookshelf with nodejs example",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariomoren00/bookshelf-nodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mariomoren00/bookshelf-nodejs/issues"
+  },
+  "homepage": "https://github.com/mariomoren00/bookshelf-nodejs#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "bookshelf": "^0.10.3",
+    "express": "^4.15.3",
+    "knex": "^0.13.0",
+    "mysql": "^2.13.0"
+  }
+}
