@@ -2,7 +2,6 @@
 
 var articleModel = require('../models/article.model');
 
-/* GET /api/articles */
 function getArticles(req, res, next){
 	articleModel.Articles.forge()
 	.query('where', 'deleted', '=', '0')
@@ -20,12 +19,11 @@ function getArticles(req, res, next){
 			data: {message: err.message}
 		});
 	});
-};
+}
 
-/* GET /api/article/:article_id */
 function getArticleById(req, res, next){
 	articleModel.Article.forge({
-		id : req.params.article_id
+		id : req.params.id
 	})
 	.query('where', 'deleted', '=', '0')
 	.fetch()
@@ -50,9 +48,8 @@ function getArticleById(req, res, next){
 			data : {message : err.message}
 		})
 	})
-};
+}
 
-/* POST /api/article */
 function saveArticle(req, res, next){
 	articleModel.Article.forge({
 		title : req.body.title,
@@ -67,7 +64,8 @@ function saveArticle(req, res, next){
 				title : article.get('title'),
 				body : article.get('body'),
 				author : article.get('author')
-			}
+			},
+			message : 'Article successfully created'
 		});
 	})
 	.catch(function (err) {
@@ -77,11 +75,10 @@ function saveArticle(req, res, next){
 			data: {message: err.message}
 		});
 	});
-};
+}
 
-/* PUT /api/article/:article_id */
 function updateArticle(req, res, next){
-	articleModel.Article.forge({ id : req.params.article_id})
+	articleModel.Article.forge({ id : req.params.id})
 	.fetch({ require : true })
 	.then(function(article){
 		article.save({
@@ -94,8 +91,10 @@ function updateArticle(req, res, next){
 				error : false,
 				data : {
 					title : article.get('title'),
-					message : 'Article deatils update'
-				}
+					body : article.get('body'),
+					author : article.get('author'),
+				},
+				message : 'Article successfully updated'
 			});
 		})
 		.catch(function(err){
@@ -112,11 +111,10 @@ function updateArticle(req, res, next){
 			data : {message : err.message}
 		})
 	})
-};
+}
 
-/* DELETE /api/article/:article_id */
 function deleteArticle(req, res, next){
-	articleModel.Article.forge({id : req.params.article_id})
+	articleModel.Article.forge({id : req.params.id})
 	.fetch({require : true})
 	.then(function(article){
 		article.save({
@@ -127,9 +125,9 @@ function deleteArticle(req, res, next){
 			res.json({
 				error : false,
 				data : {
-					title : article.get('title'),
-					message : 'Article successfully deleted'
-				}
+					title : article.get('title')
+				},
+				message : 'Article successfully deleted'
 			})
 		})
 		.catch(function(err){
@@ -141,7 +139,7 @@ function deleteArticle(req, res, next){
 		res.status(500)
 		.json({error : true, data : {message : err.message}})
 	})
-};
+}
 
 module.exports = {
   getArticles,
