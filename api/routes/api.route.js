@@ -15,13 +15,13 @@ module.exports = (function () {
 	api.put('/users/:id', usersController.updateUser);
 	api.delete('/users/:id', usersController.deleteUser);
 
-  api.get('/articles', articlesController.getArticles);
-  api.post('/articles', articlesController.saveArticle);
-  api.get('/articles/:id', articlesController.getArticleById);
-  api.put('/articles/:id', articlesController.updateArticle);
-  api.delete('/articles/:id', articlesController.deleteArticle);
+	api.get('/articles', articlesController.getArticles);
+	api.post('/articles', articlesController.saveArticle);
+	api.get('/articles/:id', articlesController.getArticleById);
+	api.put('/articles/:id', articlesController.updateArticle);
+	api.delete('/articles/:id', articlesController.deleteArticle);
 
 
-  return api;
+	return api;
 
 })();

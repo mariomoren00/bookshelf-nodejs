@@ -83,7 +83,7 @@ function updateUser(req, res, next){
 	.then(function(user){
 		user.save({
 			name : req.body.name || user.get('name'),
-			email : req.body.name || user.get('name')
+			email : req.body.email || user.get('email')
 		})
 		.then(function(){
 			res.json({

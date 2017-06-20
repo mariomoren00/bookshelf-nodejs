@@ -8,8 +8,8 @@ var Promise  = require('bluebird');
 
 // Declare access control
 var allowCrossDomain=function(req,res,next){
-        res.header('Access-Control-Allow-Origin','*');
-        next();
+    res.header('Access-Control-Allow-Origin','*');
+    next();
 };
 
 app.use(allowCrossDomain);
